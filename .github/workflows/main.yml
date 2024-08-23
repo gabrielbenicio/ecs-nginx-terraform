@@ -16,9 +16,14 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: Set AWS region
+      run: echo "AWS_DEFAULT_REGION=us-west-2" >> $GITHUB_ENV  # Substitua pela sua região
+
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+      with:
+        region: us-west-2  # Substitua pela sua região
 
     - name: Build and push Node.js app image
       run: |
